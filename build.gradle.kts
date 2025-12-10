@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.moulberry.axiom"
-version = "5.0.2+1.21.10"
+version = "5.0.2+1.21.11"
 description = "Serverside component for Axiom on Paper"
 
 java {
@@ -39,7 +39,7 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
     implementation(libs.reflection.remapper)
     implementation(libs.cloud.paper)
 
@@ -64,7 +64,7 @@ dependencies {
 tasks {
     // Configure reobfJar to run when invoking the build task
     assemble {
-        dependsOn(reobfJar)
+        dependsOn(shadowJar)
     }
 
     compileJava {

@@ -6,7 +6,7 @@ import com.moulberry.axiom.world_properties.WorldPropertyWidgetType;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import org.bukkit.GameRule;
 import org.bukkit.NamespacedKey;
@@ -21,7 +21,7 @@ import java.util.*;
 public class ServerWorldPropertiesRegistry {
 
     private final LinkedHashMap<WorldPropertyCategory, List<ServerWorldPropertyHolder<?>>> propertyList = new LinkedHashMap<>();
-    private final Map<ResourceLocation, ServerWorldPropertyHolder<?>> propertyMap = new HashMap<>();
+    private final Map<Identifier, ServerWorldPropertyHolder<?>> propertyMap = new HashMap<>();
     private final Reference<World> world;
 
     public ServerWorldPropertiesRegistry(Reference<World> world) {
@@ -29,8 +29,8 @@ public class ServerWorldPropertiesRegistry {
         this.registerDefault();
     }
 
-    public ServerWorldPropertyHolder<?> getById(ResourceLocation resourceLocation) {
-        return propertyMap.get(resourceLocation);
+    public ServerWorldPropertyHolder<?> getById(Identifier Identifier) {
+        return propertyMap.get(Identifier);
     }
 
     @SuppressWarnings("unchecked")
@@ -49,7 +49,7 @@ public class ServerWorldPropertiesRegistry {
         this.propertyList.put(category, holders);
 
         for (ServerWorldPropertyHolder<?> holder : holders) {
-            ResourceLocation id = holder.getId();
+            Identifier id = holder.getId();
             if (this.propertyMap.containsKey(id)) {
                 throw new RuntimeException("Duplicate property: " + id);
             }
