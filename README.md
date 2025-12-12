@@ -1,7 +1,5 @@
 # Axiom Paper Plugin
 
-edit: trigger build
-
 Serverside component for Axiom
 
 (todo: better readme)
